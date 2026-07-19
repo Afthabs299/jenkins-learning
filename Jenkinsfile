@@ -6,17 +6,20 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building the project...'
+                echo 'Checking Python is available...'
+                bat 'python --version'
             }
         }
         stage('Test') {
             steps {
-                echo 'Running tests...'
+                echo 'Running real tests...'
+                bat 'python test_app.py'
             }
         }
         stage('Deploy') {
             steps {
                 echo "Deploying the project for ${params.NAME}..."
+                bat 'python app.py'
             }
         }
     }
