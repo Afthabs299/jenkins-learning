@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    parameters {
+        string(name: 'NAME', defaultValue: 'World', description: 'Who should we greet?')
+    }
     stages {
         stage('Build') {
             steps {
@@ -13,7 +16,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying the project...'
+                echo "Deploying the project for ${params.NAME}..."
             }
         }
     }
